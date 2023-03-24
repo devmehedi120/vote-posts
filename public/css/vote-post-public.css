@@ -1,0 +1,25 @@
+/**
+ * All of the CSS for your public-facing functionality should be
+ * included in this file.
+ */
+ .voteModule {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.voteBtns{
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+}
+span.downvote{
+    transform: rotate(180deg);
+}
+span.vote.disabled, span.downvote.disabled {
+    pointer-events: none;
+    opacity: .5;
+}
+.voteModule span.vote, .voteModule span.downvote{
+    cursor: pointer;
+}
