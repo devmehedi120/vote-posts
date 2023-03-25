@@ -19,6 +19,7 @@ span.downvote{
 span.vote.disabled, span.downvote.disabled {
     pointer-events: none;
     opacity: .5;
+   
 }
 .voteModule span.vote, .voteModule span.downvote{
     cursor: pointer;
@@ -103,4 +104,12 @@ span.closeModal {
 }
 .dnone{
     display: none !important;
+}
+.vote.disabled{
+    pointer-events: none;
+    opacity: .3;
+}
+.downvote.disabled{
+    pointer-events: none;
+    opacity: .3;
 }

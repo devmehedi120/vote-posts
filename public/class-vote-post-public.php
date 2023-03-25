@@ -99,7 +99,8 @@ class Vote_Post_Public {
 		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/vote-post-public.js', array( 'jquery' ), $this->version, false );
 		wp_localize_script($this->plugin_name, "voteAjax", array(
 			'ajaxurl' => admin_url("admin-ajax.php"),
-			'nonce' => wp_create_nonce("votenonce")
+			'nonce' => wp_create_nonce("votenonce"),
+		
 		));
 
 	}

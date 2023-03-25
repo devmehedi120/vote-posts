@@ -183,8 +183,6 @@ class Vote_Post {
 		// Login process
 		$this->loader->add_action( 'wp_ajax_do_login', $plugin_public, 'do_login' );
 		$this->loader->add_action( 'wp_ajax_nopriv_do_login', $plugin_public, 'do_login' );
-
-
 	}
 
 	/**

@@ -20,8 +20,7 @@ jQuery(function( $ ) {
 			},
 			dataType: "json",
 			success: function (response) {
-				btn.removeClass("disabled");
-
+				$(".downvote.disabled").removeClass("disabled");
 				if(response.login){
 					$(document).find(".loginModal.dnone").removeClass("dnone");
 				}
@@ -56,7 +55,7 @@ jQuery(function( $ ) {
 			},
 			dataType: "json",
 			success: function (response) {
-				btn.removeClass("disabled");
+				$(".vote.disabled").removeClass("disabled");
 
 				if(response.login){
 					$(document).find(".loginModal.dnone").removeClass("dnone");
@@ -122,4 +121,5 @@ jQuery(function( $ ) {
 			}
 		});
 	});
+     
 });
