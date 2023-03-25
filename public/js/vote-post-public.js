@@ -22,6 +22,10 @@ jQuery(function( $ ) {
 			success: function (response) {
 				btn.removeClass("disabled");
 
+				if(response.login){
+					$(document).find(".loginModal.dnone").removeClass("dnone");
+				}
+
 				if(response.error){
 					alert(response.error);
 				}
@@ -54,7 +58,11 @@ jQuery(function( $ ) {
 			success: function (response) {
 				btn.removeClass("disabled");
 
-				if(!response.error){
+				if(response.login){
+					$(document).find(".loginModal.dnone").removeClass("dnone");
+				}
+
+				if(!response.error){  
 					console.log(response.success);
 					parent.find("strong").text(response.success);
 				}
@@ -62,4 +70,56 @@ jQuery(function( $ ) {
 		});
 	});
 
+
+	// Close modal
+	$(document).on("click", ".closeModal", function(){
+		$(this).parents(".loginModal").addClass("dnone");
+	});
+
+	// Hide when click on wrapper
+	$(".loginModal").click(function(e) {
+		if (e.target === this) {
+		  $(this).addClass("dnone");
+		}
+	});
+
+	// Doing login
+	$(document).on("click", ".loginBtn", function(){
+		const email = $("#userEmail").val();
+		const pass = $("#userPass").val();
+		const btn = $(this);
+
+		if(email === ""){
+			alert("Without email cannot be login!");
+		}
+		if(pass === ""){
+			alert("Without email cannot be login!");
+		}
+
+		$.ajax({
+			type: "post",
+			url: voteAjax.ajaxurl,
+			data: {
+				action: "do_login",
+				nonce: voteAjax.nonce,
+				email: email,
+				pass: pass
+			},
+			dataType: "json",
+			beforeSend: () => {
+				btn.prop("disabled", true);
+			},
+			success: function (response) {
+				btn.prop("disabled", false);
+
+				if(response.success){
+					$(".alert").append(`<p>${response.success}</p>`);
+
+					setTimeout(() => {
+						location.reload();
+					}, 1500);
+				}
+			}
+		});
+	});
 });

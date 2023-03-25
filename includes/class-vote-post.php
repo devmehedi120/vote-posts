@@ -179,6 +179,11 @@ class Vote_Post {
 		// Down vote
 		$this->loader->add_action( 'wp_ajax_downvote_adding_process', $plugin_public, 'downvote_adding_process' );
 		$this->loader->add_action( 'wp_ajax_nopriv_downvote_adding_process', $plugin_public, 'downvote_adding_process' );
+		$this->loader->add_action( 'wp_footer', $plugin_public, 'login_modal_html' );
+		// Login process
+		$this->loader->add_action( 'wp_ajax_do_login', $plugin_public, 'do_login' );
+		$this->loader->add_action( 'wp_ajax_nopriv_do_login', $plugin_public, 'do_login' );
+
 
 	}
 

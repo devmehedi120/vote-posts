@@ -119,7 +119,7 @@ class Vote_Post_Public {
 		}
 
 		if(!is_user_logged_in()){
-			echo json_encode(array("error" => "You must login first." ));
+			echo json_encode(array("login" => "Login" ));
 			die;
 		}
 
@@ -129,8 +129,6 @@ class Vote_Post_Public {
 		
 		$postId = intval($_POST['postId']);
 		$votes = get_post_meta($postId, "votepost_votes", true);
-		// $votes = ((!empty($votes)) ? intval($votes) : 0);
-		// $votes += 1;
 
 		// With userid
 		$votes = ((is_array($votes)) ? $votes : []);
@@ -156,7 +154,7 @@ class Vote_Post_Public {
 		}
 
 		if(!is_user_logged_in()){
-			echo json_encode(array("error" => "You must login first." ));
+			echo json_encode(array("login" => "Login" ));
 			die;
 		}
 
@@ -166,8 +164,6 @@ class Vote_Post_Public {
 		
 		$postId = intval($_POST['postId']);
 		$votes = get_post_meta($postId, "votepost_votes", true);
-		// $votes = ((!empty($votes)) ? intval($votes) : 0);
-		// $votes += 1;
 
 		// With userid
 		$votes = ((is_array($votes)) ? $votes : []);
@@ -183,4 +179,69 @@ class Vote_Post_Public {
 		die;
 	}
 
+	function login_modal_html(){
+		?>
+		<div class="loginModal dnone">
+			<div class="modalContents">
+				<h3>Sign In</h3>
+				<div class="alert"></div>
+				<span class="closeModal">+</span>
+				<div class="formField">
+					<label for="userEmail">Email</label>
+					<input type="email" id="userEmail">
+				</div>
+				<div class="formField">
+					<label for="userPass">Password</label>
+					<input type="password" id="userPass">
+				</div>
+
+				<div class="formBtns">
+					<button class="loginBtn">Sign In</button>
+					<a href="<?php echo esc_url(home_url('/registration')) ?>" class="registeredBtn">Sign Up</a>
+				</div>
+			</div>
+		</div>
+		<?php
+	}
+
+
+	// Ajax login
+	function do_login(){
+		if(!wp_verify_nonce($_POST['nonce'], "votenonce")){
+			die("Invalid request!");
+		}
+
+		if(!isset($_POST['email']) && !isset($_POST['pass'])){
+			echo json_encode(array("error" => "Invalid credentials"));
+			die;
+		}
+
+		$email = sanitize_email($_POST['email']);
+		$username = explode("@", $email)[0];
+
+		$pass = sanitize_text_field($_POST['pass']);
+
+		$user = get_user_by("email", $email);
+		if(is_wp_error($user)){
+			echo json_encode(array("error" => "User dosnet exist!"));
+			die;
+		}
+		
+		// Use the wp_signon() function to authenticate the user
+		$user = wp_signon(array(
+			'user_login' => $username,
+			'user_password' => $pass,
+			'remember' => true
+		), false);
+
+		if (is_wp_error($user)) {
+			echo json_encode(array("error" => "Invalid credentials"));
+			die;
+		} else {
+			echo json_encode(array("success" => "You have successfully logged in."));
+			die;
+		}
+
+		die;
+	}
 }

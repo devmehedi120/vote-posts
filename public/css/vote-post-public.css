@@ -23,3 +23,84 @@ span.vote.disabled, span.downvote.disabled {
 .voteModule span.vote, .voteModule span.downvote{
     cursor: pointer;
 }
+
+
+.loginModal {
+    position: fixed !important;
+    width: auto;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(5px);
+    background: #0000001a;
+}
+.modalContents {
+    width: 400px;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 20px;
+    box-shadow: 0 0 10px -4px black;
+    border-radius: 5px;
+    position: relative;
+}
+.modalContents h3 {
+    margin: 0 !important;
+    font-size: 28px;
+    font-weight: 700;
+    color: dodgerblue;
+}
+span.closeModal {
+    position: absolute;
+    right: 9px;
+    top: -7px;
+    font-size: 33px;
+    transform: rotate(45deg);
+    color: red;
+    cursor: pointer;
+    user-select: none;
+}
+.modalContents .formField {
+    display: flex;
+    flex-direction: column;
+}
+
+.alert p{
+    padding: 5px 10px;
+    border-radius: 5px;
+    border-left: 2px solid dodgerblue;
+    background: rgba(30, 143, 255, 0.096);
+}
+
+.modalContents .formField input {
+    padding: 14px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    outline: none;
+    box-shadow: none;
+}
+
+.formBtns button[disabled] {
+    opacity: .5;
+    background-color: #ddd;
+    color: #000;
+    pointer-events: none;
+}
+
+.formBtns button{
+    padding: 12px 20px;
+    border-radius: 5px;
+    background: dodgerblue;
+    border: none;
+    cursor: pointer;
+    color: #fff;
+}
+.dnone{
+    display: none !important;
+}
