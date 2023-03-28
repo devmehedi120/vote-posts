@@ -121,5 +121,22 @@ jQuery(function( $ ) {
 			}
 		});
 	});
+
+	Date.prototype.addDays = function(days) {
+		var date = new Date(this.valueOf());
+		date.setDate(date.getDate() + days);
+		return date;
+	}
+
+	const currentTime = new Date();
+
+	localStorage.setItem("remember_me", currentTime);
+	// Welcome back info
+	var date = ((localStorage.getItem("remember_me") !== null) ? new Date(localStorage.getItem("remember_me")) : currentTime );
+	console.log(currentTime.getDate);
+
+	if(date.addDays(1).getDate() == currentTime.getDate){
+		$("body").prepend("<H1>Welcome Back...</h1>");
+	}
      
 });
