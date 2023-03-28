@@ -12,5 +12,48 @@
  * @subpackage Vote_Post/admin/partials
  */
 ?>
+<h3>Settings</h3>
+<hr>
 
-<!-- This file should primarily consist of HTML with a little bit of PHP. -->
+<section class="page">
+   <div class="tabs">
+      <ul class="tab-list">
+         <li class="active">
+            <a class="tab-control" href="#tab-1">
+               Tab 1
+            </a>
+         </li>
+         <li>
+            <a class="tab-control" href="#tab-2">
+               Tab 2
+            </a>
+         </li>
+         <li>
+            <a class="tab-control" href="#tab-3">
+               Tab 3
+            </a>
+         </li>
+      </ul>
+      <div class="tab-panel active" id="tab-1">
+        <form action="options.php" method="post">
+            <?php settings_fields("vote_post_tab1_section") ?>
+            <?php do_settings_sections("vote_post_tab1_page") ?>
+			<?php echo get_submit_button("Save", "button-primary") ?>
+		</form>
+      </div>
+      <div class="tab-panel" id="tab-2">
+      <form action="options.php" method="post">
+            <?php settings_fields("vote_post_tab2_section") ?>
+            <?php do_settings_sections("vote_post_tab2_page") ?>
+			<?php echo get_submit_button("Save", "button-primary") ?>
+		</form>
+      </div>
+      <div class="tab-panel" id="tab-3">
+      <form action="options.php" method="post">
+            <?php settings_fields("vote_post_tab3_section") ?>
+            <?php do_settings_sections("vote_post_tab3_page") ?>
+			<?php echo get_submit_button("Save", "button-primary") ?>
+		</form>
+      </div>
+   </div>
+</section>

@@ -73,7 +73,8 @@ class Vote_Post_Admin {
 		 * class.
 		 */
 
-		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/vote-post-admin.css', array(), $this->version, 'all' );
+		wp_register_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/vote-post-admin.css', array(), $this->version, 'all' );
+		wp_enqueue_style($this->plugin_name);
 
 	}
 
@@ -100,4 +101,46 @@ class Vote_Post_Admin {
 
 	}
 
+	function admin_menu_page(){
+		add_menu_page("Vote posts", "Vote posts", "manage_options", "vote-posts", [$this, "vote_post_menu_page"], "dashicons-admin-generic", 45);
+
+		add_settings_section("vote_post_tab1_section", "", "", "vote_post_tab1_page");
+
+		add_settings_field("vp_user_name", "Username", [$this, "username_field"], "vote_post_tab1_page", "vote_post_tab1_section");
+		register_setting("vote_post_tab1_section", "vp_user_name");
+
+		add_settings_section("vote_post_tab2_section", "", "", "vote_post_tab2_page");
+		add_settings_field("vp_user_email", "Email", [$this, "email_field"], "vote_post_tab2_page", "vote_post_tab2_section");
+		register_setting("vote_post_tab2_section", "vp_user_email");
+
+
+		add_settings_section("vote_post_tab3_section", "","", "vote_post_tab3_page");
+		add_settings_field("vp_user_pass", "Password", [$this, "password_field"],"vote_post_tab3_page", "vote_post_tab3_section");
+		register_setting("vote_post_tab3_section", "vp_user_pass");
+	}
+
+	
+	function username_field(){
+		echo '<input class="widefat" type="text" name="vp_user_name" value="'.get_option('vp_user_name').'">';
+	}
+
+
+	function email_field(){
+		echo '<input class="widefat" type="email" name="vp_user_email" value="'.get_option('vp_user_email').'">';
+	}
+
+	function password_field(){
+	echo '<input class="widefat" type="password" name="vp_user_pass" value="'.get_option('vp_user_pass').'">';
+	}
+	
+	function vote_post_menu_page(){
+		require_once plugin_dir_path(__FILE__)."partials/vote-post-admin-display.php";
+	}
+
+
+
+	function add_credits_column($columns) {
+		$columns['credits'] = 'Credits';
+		return $columns;
+	}
 }

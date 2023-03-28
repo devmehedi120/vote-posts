@@ -156,6 +156,9 @@ class Vote_Post {
 
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
+		$this->loader->add_action( 'admin_menu', $plugin_admin, 'admin_menu_page' );
+		$this->loader->	add_filter('manage_users_columns',$plugin_admin, 'add_credits_column');;
+		//$this->loader->	add_action('edit_user_profile', $plugin_admin,'add_credits_custom_field');
 
 	}
 
