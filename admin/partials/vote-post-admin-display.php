@@ -38,22 +38,21 @@
         <form action="options.php" method="post">
             <?php settings_fields("vote_post_tab1_section") ?>
             <?php do_settings_sections("vote_post_tab1_page") ?>
+            <?php do_settings_sections("vote_post_tab2_page") ?>
+            <?php do_settings_sections("vote_post_tab3_page") ?>
 			<?php echo get_submit_button("Save", "button-primary") ?>
 		</form>
       </div>
       <div class="tab-panel" id="tab-2">
       <form action="options.php" method="post">
-            <?php settings_fields("vote_post_tab2_section") ?>
-            <?php do_settings_sections("vote_post_tab2_page") ?>
+            <?php settings_fields("vote_credit_tab2_section") ?>
+            <?php do_settings_sections("vote_credit_tab2_page") ?>
+            
 			<?php echo get_submit_button("Save", "button-primary") ?>
 		</form>
       </div>
       <div class="tab-panel" id="tab-3">
-      <form action="options.php" method="post">
-            <?php settings_fields("vote_post_tab3_section") ?>
-            <?php do_settings_sections("vote_post_tab3_page") ?>
-			<?php echo get_submit_button("Save", "button-primary") ?>
-		</form>
+     
       </div>
    </div>
-</section>
+</section> 
