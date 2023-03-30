@@ -125,7 +125,6 @@ class Vote_Post_Admin {
 	
 	function username_field(){
 		echo '<input class="widefat" type="text" name="vp_user_name" value="'.get_option('vp_user_name').'">';
-		
 	}
 
 
@@ -134,7 +133,7 @@ class Vote_Post_Admin {
 	}
 
 	function password_field(){
-	echo '<input class="widefat" type="password" name="vp_user_pass" value="'.get_option('vp_user_pass').'">';
+		echo '<input class="widefat" type="password" name="vp_user_pass" value="'.get_option('vp_user_pass').'">';
 	}
 	function credit_field(){
 		echo '<input type="text" name="vp_user_credit" value="'.get_option('vp_user_credit').'">';
@@ -158,9 +157,10 @@ class Vote_Post_Admin {
 
 function custom_user_column_data( $output, $column_name, $user_id ) {
     if ( 'credits' === $column_name ) {
-        $credit = get_user_meta( $user_id, 'credit', true );
-        $output = $credit ? $credit : '-';
+        $credit = get_user_meta( $user_id, 'vp_credit', true );
+		return '<input data-id="'.$user_id.'" class="usercredit" type="number" style="width: 50px" value="'.$credit.'"> left <b style="color: dodgerblue">3</b>';
     }
+
     return $output;
 }
 

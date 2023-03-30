@@ -35,7 +35,7 @@
          </li>
       </ul>
       <div class="tab-panel active" id="tab-1">
-        <form action="options.php" method="post">
+        <form class="tab1form" action="options.php" method="post">
             <?php settings_fields("vote_post_tab1_section") ?>
             <?php do_settings_sections("vote_post_tab1_page") ?>
             <?php do_settings_sections("vote_post_tab2_page") ?>
@@ -44,11 +44,10 @@
 		</form>
       </div>
       <div class="tab-panel" id="tab-2">
-      <form action="options.php" method="post">
-            <?php settings_fields("vote_credit_tab2_section") ?>
-            <?php do_settings_sections("vote_credit_tab2_page") ?>
-            
-			<?php echo get_submit_button("Save", "button-primary") ?>
+      <form class="tab2form" action="options.php" method="post">
+         <?php settings_fields("vote_credit_tab2_section") ?>
+         <?php do_settings_sections("vote_credit_tab2_page") ?>
+			<?php submit_button("Save") ?>
 		</form>
       </div>
       <div class="tab-panel" id="tab-3">
